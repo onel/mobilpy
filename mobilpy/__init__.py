@@ -14,14 +14,6 @@ from Crypto import Random
 
 from logging import debug, exception
 
-
-# TODO:
-# remove openssl and crypto deps, only use one
-# migrate to pycryptodome
-# add instalement
-# add <recurrence>
-# add prefilled credit card data payments?
-
 class MobilPay(object):
 
     def __init__(self, *args, **kwargs):

@@ -102,7 +102,7 @@ if transaction_successful:
   # everything is ok
 ```
 ## Creating a response
-You need to let MobiPay know if everything is ok on your end or if something weird happened.
+You need to let MobilPay know if everything is ok on your end or if something weird happened.
 If everything is ok you can create a response like this:
 ```python
 message = "All good captain"
@@ -121,7 +121,7 @@ response_xml = client.create_reponse(message=message)
 The response doesn't need to be encrypted. Just respond with the xml.
 
 ### Crediting
-If a transaction was credited from the Dashboard, MobiPay will make a new webhook `POST`. You can check for that:
+If a transaction was credited from the Dashboard, MobilPay will make a new webhook `POST`. You can check for that:
 ```python
 # if the transaction was credited from mobilpay
 if request_object.get('action') == 'credit':
