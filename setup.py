@@ -2,14 +2,14 @@
 from setuptools import setup
 
 def readme():
-    with open('README.md') as f:
+    with open('README.rst') as f:
         return f.read()
 
 
 # tutorial: 
 # https://python-packaging.readthedocs.io/en/latest/index.html
 setup(name='mobilpy',
-        version='0.1',
+        version='0.2',
         description='Library that helps create the XML necessary for online payments with MobilPay',
         long_description=readme(),
         keywords='online payments mobilpay netopia',
