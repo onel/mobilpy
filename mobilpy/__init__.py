@@ -234,14 +234,13 @@ class MobilPay(object):
     @staticmethod
     def create_webhook_reponse(**kwargs):
 
-        message = kwargs.get('message')
-        crc = kwargs.get('crc')
+        message = kwargs.get('message', '')
 
         error_type = kwargs.get('error_type', '')
         error_code = kwargs.get('error_code', '')
 
         crc_element = Element('crc')
-        crc_element.text = message if message else crc
+        crc_element.text = message
 
         if error_type:
             crc_element.set('error_type', error_type)
@@ -284,7 +283,7 @@ class MobilPay(object):
 
         if not order_id or not amount or not customer_id or not details or not confirm_url or not return_url:
             if self.developement:
-                debug('Arguments for create_payment_data', kwargs)
+                debug("Arguments for create_payment_data: %s", kwargs)
 
             raise Exception("Can't create mobilpay request with missing args.")
 
