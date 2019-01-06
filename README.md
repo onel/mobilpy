@@ -1,6 +1,6 @@
 # mobilPy
 
-mobilPy helps you with everything you need to implement MobilPay's online payment solution.
+mobilPy helps you with everything you need to implement [mobilPay](https://www.mobilpay.ro/public/en/)'s online payment solution.
 Steps:
 - create an account
 - get approved
@@ -55,7 +55,7 @@ options = {
     "billing": billing_details, # dict, OPTIONAL
     "params": params, # dict, OPTIONAL,
     
-    # the webhook where the response from MobilPay will be sent
+    # the webhook where the response from mobilPay will be sent
     "confirm_url": "",
     # the url where the user will be redirected
     "return_url": ""
@@ -63,7 +63,7 @@ options = {
 response = client.create_payment_data(**options)
 ```
 The `response` is an dict that has two keys: `env_key` and `data`.
-These need to be used in the front end and make the request to MobilPay.
+These need to be used in the front end and make the request to mobilPay.
 
 For example, the HTML might look like this:
 ```html
@@ -80,7 +80,7 @@ The POST urls for the form are:
 - production: `https://secure.mobilpay.ro`
 
 ## Webhook
-MobilPay will make a `POST` request to the url you set as `confirm_url`.
+mobilPay will make a `POST` request to the url you set as `confirm_url`.
 mobilPy has methods to help you parse it and offer a response.
 
 ```python
@@ -102,7 +102,7 @@ if transaction_successful:
   # everything is ok
 ```
 ## Creating a response
-You need to let MobilPay know if everything is ok on your end or if something weird happened.
+You need to let mobilPay know if everything is ok on your end or if something weird happened.
 If everything is ok you can create a response like this:
 ```python
 message = "All good captain"
@@ -121,7 +121,7 @@ response_xml = client.create_reponse(message=message)
 The response doesn't need to be encrypted. Just respond with the xml.
 
 ### Crediting
-If a transaction was credited from the Dashboard, MobilPay will make a new webhook `POST`. You can check for that:
+If a transaction was credited from the Dashboard, mobilPay will make a new webhook `POST`. You can check for that:
 ```python
 # if the transaction was credited from mobilpay
 if request_object.get('action') == 'credit':
@@ -137,3 +137,7 @@ Some things that still need to be done
 - migrate to pycryptodome (pycrypto is not maintained)
 - add support for: instalements, <recurrence>, 
 - maybe add prefilled credit card data payments?
+
+
+### Disclaimer
+This library is not associated in any way with mobilPay
