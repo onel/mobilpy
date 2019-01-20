@@ -14,14 +14,14 @@ from Crypto import Random
 
 from logging import debug, exception
 
-class MobilPay(object):
+class Client(object):
 
     def __init__(self, *args, **kwargs):
 
         signature = kwargs.get('signature')
 
         public_key = kwargs.get('public_key')
-        private_key = kwargs.get('public_key')
+        private_key = kwargs.get('private_key')
 
         if not signature:
             raise Exception('Missing signature argument')

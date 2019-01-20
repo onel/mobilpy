@@ -24,7 +24,7 @@ Usage
 
 .. code:: python
 
-    from mobilpy import MobilPay
+    from mobilpy import Client
 
     # the signature for your account
     signature = 'DLAN-1R5V-19EN-XXXX-NFJA'
@@ -33,7 +33,7 @@ Usage
     # the private_key
     private_key = "./sandbox.DLAN-1R5V-19EN-XXXX-NFJA.private.key"
 
-    client = MobilPay(signature=signature, public_key=public_key, private_key=private_key)
+    client = Client(signature=signature, public_key=public_key, private_key=private_key)
 
     # optional dict containing details about the customer
     # if they are sent, the customer will have a short checkout by skipping the second step in the payment flow
@@ -99,7 +99,7 @@ response.
     env_key = post.get('env_key')
     data = post.get('data')
 
-    client = MobilPay(signature=signature, public_key=public_key, private_key=private_key)
+    client = Client(signature=signature, public_key=public_key, private_key=private_key)
 
     request_xml = client.decrypt_message(env_key, data)
     request_object = client.parse_request_xml(request_xml)
@@ -137,7 +137,7 @@ If you had an error:
     error_type = "1"
     # your internal error code. a number maybe. OPTIONAL
     error_code = ''
-    response_xml = client.create_reponse(message=message)
+    response_xml = client.create_reponse(message=message, error_type=error_type, error_code=error_code)
 
 The response doesn't need to be encrypted. Just respond with the xml.
 
