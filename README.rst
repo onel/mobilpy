@@ -82,9 +82,12 @@ For example, the HTML might look like this:
         <input type="submit" value="Send">
     </form>
 
-The POST urls for the form are: - testing:
-``http://sandboxsecure.mobilpay.ro`` - production:
-``https://secure.mobilpay.ro``
+The POST urls for the form are:
+
+testing:
+  ``http://sandboxsecure.mobilpay.ro`` 
+production:
+  ``https://secure.mobilpay.ro``
 
 Webhook
 -------
@@ -157,10 +160,9 @@ new webhook ``POST``. You can check for that:
 TODO
 ====
 
-Some things that still need to be done: 
-- tests 
-- too many dependencies: pyopenssl and pycrypto 
-- migrate to pycryptodome (pycrypto is not maintained) 
+Some things that still need to be done:
+
+- tests
 - add support for: instalements, recurrence
 - maybe add prefilled credit card data payments?
 
