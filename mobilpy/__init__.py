@@ -1,6 +1,9 @@
-
-import urllib
 import base64
+
+try:
+    from urllib import unquote
+except ImportError:
+    from urllib.parse import unquote
 
 from datetime import datetime
 from xml.etree.ElementTree import Element, SubElement, tostring, ElementTree, fromstring
@@ -13,6 +16,7 @@ from Crypto.PublicKey import RSA
 from Crypto import Random
 
 from logging import debug, exception
+
 
 class Client(object):
 
@@ -55,7 +59,6 @@ class Client(object):
         order_id = kwargs.get('order_id')
         order_type = kwargs.get('order_type', 'card')
         timestamp = kwargs.get('timestamp')
-
 
         amount = kwargs.get('amount')
         currency = kwargs.get('currency', 'RON')
@@ -100,21 +103,20 @@ class Client(object):
             phone_el = SubElement(billing, 'mobile_phone')
             phone_el.text = phone
 
-
         # if we have other params to add
         if params:
-            params = SubElement(order, 'params')
+            params_el = SubElement(order, 'params')
 
             def add_other_param(param_name, param_value):
                 if param_name and param_value:
-                    param = SubElement(params, 'param')
+                    param = SubElement(params_el, 'param')
                     name = SubElement(param, 'name')
                     name.text = param_name
                     value = SubElement(param, 'value')
                     value.text = str(param_value)
 
-            for param in params:
-                add_other_param(key, params[key])
+            for _key, _value in params.items():
+                add_other_param(_key, _value)
 
         url = SubElement(order, 'url')
         confirm = SubElement(url, 'confirm')
@@ -157,9 +159,13 @@ class Client(object):
             raise Exception('Arguments missing.')
 
         key = RSA.importKey(self.private_key)
-
-        env_key = urllib.unquote(env_key).decode('utf8')
-        data = urllib.unquote(data).decode('utf8')
+        try:
+            env_key = unquote(env_key).decode('utf8')
+            data = unquote(data).decode('utf8')
+        except AttributeError:
+            # Python 3 compatible
+            env_key = unquote(env_key)
+            data = unquote(data)
 
         try:
             env_key = base64.b64decode(env_key)
@@ -187,7 +193,7 @@ class Client(object):
             raise Exception('Could not decrypt message.')
 
     @staticmethod
-    def parse_wenhook_request(xml):
+    def parse_webhook_request(xml):
 
         data = {}
 
