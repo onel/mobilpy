@@ -199,6 +199,8 @@ class Client(object):
 
         root = fromstring(xml)
         data['order_id'] = root.attrib.get('id', '')
+        data['timestamp'] = root.attrib.get('timestamp', '')
+        data['type'] = root.attrib.get('type', '')
 
         invoice = root.findall('invoice')[0]
         data['customer_id'] = invoice.attrib.get('customer_id')
