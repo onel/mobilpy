@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import base64
 
 try:
@@ -19,6 +20,24 @@ from logging import debug, exception
 
 
 class Client(object):
+
+    ACTION_NEW = 'new'
+    ACTION_PAID_PENDING = 'paid_pending'
+    ACTION_CONFIRMED_PENDING = 'confirmed_pending'
+    ACTION_PAID = 'paid'
+    ACTION_CONFIRMED = 'confirmed'
+    ACTION_CREDIT = 'credit'
+    ACTION_CANCELED = 'canceled'
+
+    ACTION_STATUSES = {
+        ACTION_NEW: 'Tranzactie nouă',
+        ACTION_PAID_PENDING: 'Platită, în procesare',
+        ACTION_CONFIRMED_PENDING: 'Confirmată, în procesare',
+        ACTION_PAID: 'Platită',
+        ACTION_CONFIRMED: 'Confirmată',
+        ACTION_CREDIT: 'Creditată',
+        ACTION_CANCELED: 'Anulată',
+    }
 
     def __init__(self, *args, **kwargs):
 
