@@ -105,7 +105,7 @@ response.
     client = Client(signature=signature, public_key=public_key, private_key=private_key)
 
     request_xml = client.decrypt_message(env_key, data)
-    request_object = client.parse_request_xml(request_xml)
+    request_object = client.parse_webhook_request(request_xml)
 
     # do some magic
 
