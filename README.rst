@@ -1,14 +1,17 @@
 mobilPy
 =======
 
-mobilPy helps you with everything you need to implement
-`mobilPay <https://www.mobilpay.ro/public/en/>`__'s online payment
-solution. Steps: - create an account - get approved - create a merchant
-- download keys (private and public) - copy the signature (just a
-string)
+mobilPy helps you with everything you need to implement `mobilPay <https://www.mobilpay.ro/public/en/>`__'s online payment solution. 
 
-*NOTE* You will have two private keys: for testing and production. The
-public key is the same.
+Steps:
+
+* create an account 
+* get approved 
+* create a merchant
+* download keys (private and public) 
+* copy the signature (just a string)
+
+*NOTE* You will have two private keys: for testing and production. The public key is the same.
 
 Install
 -------
