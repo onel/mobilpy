@@ -1,4 +1,10 @@
 # -*- coding: utf-8 -*-
+"""
+MobilPay payment gateway client module.
+
+This module provides functionality to integrate with the MobilPay payment system,
+including creating payment requests, encrypting/decrypting messages, and handling webhooks.
+"""
 import base64
 
 try:
